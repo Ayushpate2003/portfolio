@@ -1,0 +1,250 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Warm cream & coral Light Mode matching reference image */
+  --bg: #FFF7E8;
+  --surface: #FFFCF6;
+  --surface-muted: #F8EFE4;
+  --border: #F0E2D5;
+  --text: #17243A;
+  --muted: #64748B;
+  --accent: #F15B50;
+  --accent-secondary: #F7A69B;
+  --accent-contrast: #FFFFFF;
+
+  /* Theme-specific visual tokens */
+  --hero-radial-bg: radial-gradient(circle at 75% 30%, rgba(247, 166, 155, 0.22) 0%, rgba(255, 247, 232, 0) 60%), radial-gradient(circle at 20% 50%, rgba(241, 91, 80, 0.1) 0%, rgba(255, 247, 232, 0) 50%), #FFF7E8;
+  --grid-color: rgba(240, 226, 213, 0.7);
+  --glass-card-bg: rgba(255, 252, 246, 0.94);
+  --glass-card-border: #F0E2D5;
+  --glass-card-shadow: 0 10px 30px -10px rgba(241, 91, 80, 0.1), 0 4px 16px rgba(23, 36, 58, 0.05);
+  --glass-pill-bg: rgba(255, 255, 255, 0.96);
+  --glass-pill-border: #F0E2D5;
+  --glass-pill-shadow: 0 4px 16px rgba(23, 36, 58, 0.06), 0 0 12px rgba(241, 91, 80, 0.12);
+
+  /* Hero SVG glows */
+  --hero-ribbon-color-1: #F7A69B;
+  --hero-ribbon-color-2: #F15B50;
+  --hero-ribbon-grad-end: #FFF7E8;
+  --hero-platform-glow: rgba(241, 91, 80, 0.22);
+  --hero-platform-ring: #F15B50;
+  --hero-platform-ring-outer: rgba(247, 166, 155, 0.45);
+  --hero-orbital-ring: #F15B50;
+  --hero-orbital-shadow: rgba(241, 91, 80, 0.45);
+  --react-atom-color: #F15B50;
+
+  color-scheme: light;
+}
+
+.dark {
+  /* Deep navy/black & Turquoise Dark Mode */
+  --bg: #05090C;
+  --surface: #0A1117;
+  --surface-muted: #101A22;
+  --border: #233540;
+  --text: #F4F7FA;
+  --muted: #A0ACB8;
+  --accent: #35E0D0;
+  --accent-secondary: #20B8C4;
+  --accent-contrast: #05090C;
+
+  /* Theme-specific visual tokens */
+  --hero-radial-bg: radial-gradient(circle at 75% 30%, rgba(32, 184, 196, 0.12) 0%, rgba(5, 9, 12, 0) 60%), radial-gradient(circle at 20% 50%, rgba(53, 224, 208, 0.06) 0%, rgba(5, 9, 12, 0) 50%), #05090C;
+  --grid-color: rgba(35, 53, 64, 0.35);
+  --glass-card-bg: rgba(16, 26, 34, 0.85);
+  --glass-card-border: rgba(53, 224, 208, 0.22);
+  --glass-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(53, 224, 208, 0.12);
+  --glass-pill-bg: rgba(10, 17, 23, 0.85);
+  --glass-pill-border: rgba(53, 224, 208, 0.25);
+  --glass-pill-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(53, 224, 208, 0.15);
+
+  /* Hero SVG glows */
+  --hero-ribbon-color-1: #35E0D0;
+  --hero-ribbon-color-2: #20B8C4;
+  --hero-ribbon-grad-end: #05090C;
+  --hero-platform-glow: rgba(53, 224, 208, 0.25);
+  --hero-platform-ring: #35E0D0;
+  --hero-platform-ring-outer: rgba(53, 224, 208, 0.3);
+  --hero-orbital-ring: #35E0D0;
+  --hero-orbital-shadow: rgba(53, 224, 208, 0.6);
+  --react-atom-color: #61DAFB;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-contrast: var(--accent-contrast);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+}
+
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal[data-visible='true'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 20%, #000 35%, transparent 85%);
+    mask-image: radial-gradient(ellipse 85% 75% at 50% 20%, #000 35%, transparent 85%);
+  }
+
+  .glass-card {
+    background-color: var(--glass-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-card-border);
+    box-shadow: var(--glass-card-shadow);
+  }
+
+  .glass-pill {
+    background-color: var(--glass-pill-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-pill-border);
+    box-shadow: var(--glass-pill-shadow);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatDelayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+@keyframes floatMicro {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes cursorBlink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatDelayed 7s ease-in-out infinite 1.5s;
+}
+
+.animate-float-micro {
+  animation: floatMicro 4.5s ease-in-out infinite 0.7s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-cursor-blink {
+  animation: cursorBlink 1s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-float-micro,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+}

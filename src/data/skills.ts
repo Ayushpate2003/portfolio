@@ -1,0 +1,85 @@
+import type { SkillCategory } from '../types'
+
+export const skillCategories: SkillCategory[] = [
+  {
+    id: 'cloud-devops',
+    title: 'Cloud & DevOps',
+    icon: 'cloud',
+    skills: [
+      'AWS EC2',
+      'AWS S3',
+      'Docker',
+      'Cloud Deployment',
+      'Linux Administration',
+      'Shell Scripting',
+      'Resource Optimization',
+    ],
+  },
+  {
+    id: 'security-systems',
+    title: 'Cybersecurity & Systems',
+    icon: 'shield',
+    skills: [
+      'Network Security',
+      'Ethical Hacking',
+      'Threat Analysis',
+      'Secure System Practices',
+      'Networking',
+      'System Troubleshooting',
+    ],
+  },
+  {
+    id: 'frontend',
+    title: 'Front-End (React)',
+    icon: 'layout',
+    skills: [
+      'React',
+      'Component Development',
+      'State Management',
+      'API Integration',
+      'Responsive Design',
+      'Performance Optimization',
+    ],
+  },
+  {
+    id: 'fullstack',
+    title: 'Full-Stack & Languages',
+    icon: 'code',
+    skills: [
+      'MERN Stack',
+      'Python',
+      'Git & GitHub',
+      'REST APIs',
+      'Modern Web Apps',
+      'Automation Scripts',
+    ],
+  },
+  {
+    id: 'ai-llm',
+    title: 'AI Product Development & LLMs',
+    icon: 'brain',
+    skills: [
+      'Gemma LLM',
+      'RAG Architecture',
+      'Prompt Engineering',
+      'Google Gemini',
+      'OpenAI GPT',
+      'Hugging Face Transformers',
+    ],
+  },
+  {
+    id: 'tools',
+    title: 'Tools, Platforms & AI Builders',
+    icon: 'wrench',
+    skills: [
+      'JIRA',
+      'Trello',
+      'Asana',
+      'Slack',
+      'Power BI',
+      'Excel',
+      'Lovable AI',
+      'Figma AI',
+    ],
+  },
+]
